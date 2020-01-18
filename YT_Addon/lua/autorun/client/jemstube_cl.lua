@@ -25,7 +25,7 @@ cvars.AddChangeCallback("YT_Enabled", function( convar_name, value_old, value_ne
 	end
 end )
 
-function JemsTube_Play(URL, message)
+function YT_Play(URL, message)
 	audioChannel = sound.PlayURL ( URL, "", function (station, errorId, errorName)
 		if ( IsValid( station ) ) then
 			local volume = GetConVar("YT_Volume"):GetFloat()
@@ -48,23 +48,23 @@ function JemsTube_Play(URL, message)
 	end)
 end
 
-net.Receive( "JemsTube_Play", function( len, pl ) -- Trigger above function,  the actual processing of the song
+net.Receive( "YT_Play", function( len, pl ) -- Trigger above function,  the actual processing of the song
 	if (GetConVar("YT_Enabled"):GetInt() == 0) then
 		return
 	end
 	local URL= net.ReadString()
 	local message = net.ReadString()
-	JemsTube_Play(URL, message)
+	YT_Play(URL, message)
 end)
 
-net.Receive("JemsTube_Request", function( len, pl ) -- Trigger above function when server sends message.
+net.Receive("YT_Request", function( len, pl ) -- Trigger above function when server sends message.
 	if (GetConVar( "YT_Enabled" == 1)) then
 		notification.AddLegacy( "It's your turn to pick a song, use '!yt URL'", NOTIFY_GENERIC, 15 )
 		surface.PlaySound( "buttons/button15.wav" )
 	end
 end)
 
-net.Receive("JemsTube_Stop", function( len, pl) 
+net.Receive("YT_Stop", function( len, pl) 
 	if (LocalPlayer().YTAudioChannel ~= nil) then
 		LocalPlayer().YTAudioChannel:Stop()
 	end
