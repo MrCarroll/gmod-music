@@ -48,7 +48,7 @@ cvars.AddChangeCallback("YT_Enabled", function( convar_name, value_old, value_ne
 end )
 
 function YT_Play(URL, message)
-	audioChannel = sound.PlayURL ( URL, "", function (station, errorId, errorName)
+	audioChannel = sound.PlayURL ( URL, "noblock", function (station, errorId, errorName) -- Remove noblock if in a future release, audio/mp4 is used. It takes a while to start playing!
 		if ( IsValid( station ) ) then
 			local volume = GetConVar("YT_Volume"):GetFloat()
 			if (volume > 1 or volume < 0) then
