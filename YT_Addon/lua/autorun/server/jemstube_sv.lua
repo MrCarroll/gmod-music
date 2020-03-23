@@ -76,8 +76,7 @@ function YT_GetMetadata(VID, ply) -- Send HTTP request to middle man server to f
 			return
 		end
 		for stream = 1, #metadata["adaptiveFormats"] do
-			if (string.sub(metadata["adaptiveFormats"][stream]["type"], 1, 5) == "audio"
-			and string.sub(metadata["adaptiveFormats"][stream]["type"], 1, 9) ~= "audio/mp4" ) then -- Avoid MP4 due to a bug in libBASS. Preferably revert this if the bug is fixed
+			if (string.sub(metadata["adaptiveFormats"][stream]["type"], 1, 5) == "audio") then
 				URL = metadata["adaptiveFormats"][stream]["url"]
 				message = ply:Nick() .. " is playing " .. metadata["title"] .. "  Length: " .. string.NiceTime(metadata["lengthSeconds"])
 				print(message)
