@@ -71,7 +71,7 @@ function YT_GetMetadata(VID, ply) -- Send HTTP request to middle man server to f
     http.Fetch( API .. VID, 
     function (result)
 		local metadata = util.JSONToTable(result)
-		if (metadata["adaptiveFormats"] == nil) then
+		if (metadata == nil or metadata["adaptiveFormats"] == nil) then
 			print ("Unexpected response from API processing request from " .. ply:Nick()) -- Sometimes the API returns malformed responses.
 			return
 		end
