@@ -1,3 +1,8 @@
+# This project is archived
+As the invidio.us project is shutting down and the future of the project is uncertain, I've decided to remove the Steam Workshop submission and won't be working on this any longer.
+
+# Original README
+
 https://steamcommunity.com/sharedfiles/filedetails/?id=1988929495
 
 Drop the contents of the yt_addon folder into into the GMod addon folders, then initialise the GMod server. Alternatively, simply subscribe to the workshop release.
